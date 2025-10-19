@@ -1,12 +1,24 @@
 import { LLM } from '../types';
 import { Info } from 'lucide-react';
 
+/**
+ * @interface Props
+ * @property {LLM[]} models - The list of available language models.
+ * @property {LLM} selectedModel - The currently selected language model.
+ * @property {(model: LLM) => void} onSelect - Callback function to handle model selection.
+ */
 interface Props {
     models: LLM[];
     selectedModel: LLM;
     onSelect: (model: LLM) => void;
 }
 
+/**
+ * A component that allows the user to select a language model.
+ * It also displays the specifications of the selected model.
+ * @param {Props} props - The props for the component.
+ * @returns {JSX.Element} The rendered ModelSelector component.
+ */
 const ModelSelector = ({ models, selectedModel, onSelect }: Props) => (
     <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
         <label htmlFor="model-select" className="block text-sm font-medium text-gray-300 mb-2">1. Wybierz Model LLM</label>
