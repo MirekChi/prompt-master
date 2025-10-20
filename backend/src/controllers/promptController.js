@@ -1,6 +1,12 @@
 const Template = require('../models/Template');
 const { optimize } = require('../services/optimizationService');
 
+/**
+ * Retrieves all prompt templates from the database.
+ * @param {object} req - The Express request object.
+ * @param {object} res - The Express response object.
+ * @returns {Promise<void>} A promise that resolves when the templates have been sent.
+ */
 exports.getTemplates = async (req, res) => {
     try {
         const templates = await Template.find();
@@ -10,6 +16,12 @@ exports.getTemplates = async (req, res) => {
     }
 };
 
+/**
+ * Creates a new custom prompt template.
+ * @param {object} req - The Express request object.
+ * @param {object} res - The Express response object.
+ * @returns {Promise<void>} A promise that resolves when the template has been created.
+ */
 exports.createTemplate = async (req, res) => {
     try {
         const { name, prompt, tags } = req.body;
@@ -21,6 +33,12 @@ exports.createTemplate = async (req, res) => {
     }
 };
 
+/**
+ * Optimizes a user's prompt based on the selected model and optimization mode.
+ * @param {object} req - The Express request object.
+ * @param {object} res - The Express response object.
+ * @returns {void}
+ */
 exports.optimizePrompt = (req, res) => {
     try {
         const { userInput, model, mode, params } = req.body;

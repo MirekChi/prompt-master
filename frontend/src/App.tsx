@@ -15,6 +15,10 @@ const llmModels: LLM[] = [
     { id: 'Perplexity', name: 'Perplexity', tokenLimit: 'N/A', strengths: ['Web Search', 'Citations', 'Factual Accuracy'] },
 ];
 
+/**
+ * The main application component. It orchestrates the entire UI and state management.
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
     const [selectedModel, setSelectedModel] = useState<LLM>(llmModels[0]);
     const [mode, setMode] = useState<string>('Kreatywny');
@@ -39,6 +43,10 @@ function App() {
         return () => clearTimeout(debounceTimer);
     }, [userInput, selectedModel, mode, params]);
 
+    /**
+     * Handles the optimization of the user's prompt by calling the API.
+     * It sets the loading state and updates the optimized prompt.
+     */
     const handleOptimize = async () => {
         setIsLoading(true);
         try {
@@ -52,6 +60,10 @@ function App() {
         }
     };
 
+    /**
+     * Handles the selection of a template from the library.
+     * @param {Template} template - The selected template.
+     */
     const handleSelectTemplate = (template: Template) => {
         setUserInput(template.prompt);
     };

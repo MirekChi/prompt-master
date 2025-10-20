@@ -3,14 +3,36 @@ import { Template } from '../types';
 import { getTemplates } from '../services/api';
 import { Search } from 'lucide-react';
 
-interface Props { onSelectTemplate: (template: Template) => void; }
+/**
+ * @interface Props
+ * @property {(template: Template) => void} onSelectTemplate - Callback function to handle the selection of a template.
+ */
+interface Props {
+    onSelectTemplate: (template: Template) => void;
+}
 
+/**
+ * A component that displays a library of prompt templates.
+ * It allows users to search and select templates to use in the editor.
+ * @param {Props} props - The props for the component.
+ * @returns {JSX.Element} The rendered TemplateLibrary component.
+ */
 const TemplateLibrary = ({ onSelectTemplate }: Props) => {
     const [templates, setTemplates] = useState<Template[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        const fetchTemplates = async () => setTemplates(await getTemplates());
+        /**
+         * Fetches the prompt templates from the API.
+         */
+        const fetchTemplates = async () => {
+            try {
+                const fetchedTemplates = await getTemplates();
+                setTemplates(fetchedTemplates);
+            } catch (error) {
+                console.error("Failed to fetch templates:", error);
+            }
+        };
         fetchTemplates();
     }, []);
 

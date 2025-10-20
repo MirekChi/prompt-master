@@ -1,5 +1,12 @@
 import { OptimizationParams } from '../types';
 
+/**
+ * @interface Props
+ * @property {string} mode - The current optimization mode.
+ * @property {(mode: string) => void} setMode - Callback to set the optimization mode.
+ * @property {OptimizationParams} params - The current optimization parameters.
+ * @property {(params: OptimizationParams) => void} setParams - Callback to set the optimization parameters.
+ */
 interface Props {
     mode: string;
     setMode: (mode: string) => void;
@@ -9,7 +16,16 @@ interface Props {
 
 const modes = ['Akademicki', 'Kreatywny', 'Techniczny', 'Biznesowy', 'Analityczny'];
 
+/**
+ * A component that provides controls for configuring prompt optimization settings.
+ * @param {Props} props - The props for the component.
+ * @returns {JSX.Element} The rendered OptimizationPanel component.
+ */
 const OptimizationPanel = ({ mode, setMode, params, setParams }: Props) => {
+    /**
+     * Handles changes to the optimization parameter sliders.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - The change event.
+     */
     const handleParamChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setParams({ ...params, [e.target.name]: parseFloat(e.target.value) });
     };

@@ -1,10 +1,27 @@
-import { Clipboard, Download } from 'lucide-react';
+import { Clipboard } from 'lucide-react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-interface Props { prompt: string; isLoading: boolean; }
+/**
+ * @interface Props
+ * @property {string} prompt - The optimized prompt to display.
+ * @property {boolean} isLoading - A flag to indicate if the prompt is currently being generated.
+ */
+interface Props {
+    prompt: string;
+    isLoading: boolean;
+}
 
+/**
+ * A component to display the optimized prompt with syntax highlighting.
+ * It also provides a button to copy the prompt to the clipboard.
+ * @param {Props} props - The props for the component.
+ * @returns {JSX.Element} The rendered PromptPreview component.
+ */
 const PromptPreview = ({ prompt, isLoading }: Props) => {
+    /**
+     * Copies the optimized prompt to the user's clipboard.
+     */
     const copyToClipboard = () => navigator.clipboard.writeText(prompt);
 
     return (
